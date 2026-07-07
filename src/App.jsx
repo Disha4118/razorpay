@@ -7,25 +7,24 @@ function App() {
 
     try {
 
-      // Backend Order API
       const { data } = await axios.post(
         "http://localhost:5000/create-order",
         {
-          amount: 500
+          amount: 1
         }
       );
 
       const options = {
 
-        key: "YOUR_RAZORPAY_KEY_ID",
+        key: "rzp_test_TAUsqvUM7ujCDi",
 
         amount: data.amount,
 
         currency: data.currency,
 
-        name: "Travel Booking",
+        name: "CodeMaster Academy",
 
-        description: "Flight Booking",
+        description: "React Masterclass",
 
         order_id: data.id,
 
@@ -39,6 +38,7 @@ function App() {
             "http://localhost:5000/verify-payment",
             response
           );
+
         },
 
         prefill: {
@@ -48,19 +48,24 @@ function App() {
           email: "disha@gmail.com",
 
           contact: "9999999999"
+
         },
 
         theme: {
 
-          color: "#3399cc"
+          color: "#4F46E5"
+
         }
+
       };
 
       const razorpay = new window.Razorpay(options);
 
       razorpay.open();
 
-    } catch (err) {
+    }
+
+    catch (err) {
 
       console.log(err);
 
@@ -74,16 +79,16 @@ function App() {
 
     <div className="container">
 
-      <h1>Travel Booking</h1>
+      <h1>🎓 CodeMaster Academy</h1>
 
-      <h2>Flight Ticket</h2>
+      <h2>React Masterclass</h2>
 
-      <p>Delhi → Mumbai</p>
+      <p>Become a Full Stack Developer with 20+ hours of content.</p>
 
-      <h3>₹500</h3>
+      <h3>₹1</h3>
 
       <button onClick={handlePayment}>
-        Pay Now
+        Buy Course
       </button>
 
     </div>
